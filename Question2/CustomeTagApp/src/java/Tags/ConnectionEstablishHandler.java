@@ -89,7 +89,7 @@ public class ConnectionEstablishHandler extends SimpleTagSupport {
             int i=0;
             while(rs.next())
             {
-                //out.println("Hello");
+                ///out.println("Hello");
                 
                 int eid=rs.getInt(1);
                 String ename=rs.getString(2);
