@@ -83,4 +83,21 @@ public class SupplierBean {
         return 0;
     }
     
+     public ResultSet getSupplierwiseSales(String id){
+        
+        String sql = "select p.Date, p.PurchaseId,p.Qty,i.ItemName,s.SupplierName from PurchaseTB p,ItemTB i,SupplierTB s where p.SupplierId=s.SupplierId and p.ItemId=i.ItemId and p.SupplierId="+id;
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet rs  = stmt.executeQuery(sql);
+            return rs;
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+        
+        
+    }
+    
 }

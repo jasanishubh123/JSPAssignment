@@ -99,5 +99,18 @@ public class EmployeeBean {
         return 0;
     }
 
+      public ResultSet getEmployeeSalesData(String id){
+        String sql ="select e.EmpName,s.Qty, s.Date,i.ItemName,c.CustomerName from EmpTB e,SalesTB s,ItemTB i,CustomerTB c where e.EmpId=s.EmpId and s.ItemId=s.ItemId and s.CustomerId=c.CustomerId and e.EmpId="+id;
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet rs  = stmt.executeQuery(sql);
+            return rs;
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
     
 }

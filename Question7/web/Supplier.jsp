@@ -29,6 +29,7 @@
                     <thead>
                         <th>Name</th>
                         <th>Gender</th>
+                        <th>See Sales</th>
                     </thead>
                     <tbody>
                         <%
@@ -37,13 +38,45 @@
                                 <tr>
                                     <td><%= rs.getString(2) %></td>
                                     <td><%= rs.getString(3) %></td>
+                                    <td><a href="Supplier.jsp?id=<%= rs.getString(1) %>">See Sales</a></td>
+
                                 </tr>
                             
                             <%}
                         %>
                     </tbody>
                 </table>
+                    <br><br><br>
+                        <% String id = request.getParameter("id");
+                            if(id!=null){
+                             ResultSet r= c.getSupplierwiseSales(id);
+                             %>
+                             <table border="1">
+                                <thead>
+                                   <th>Item Name</th><th>Supplier Name</th><th>Qty</th><th>Date</th>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        while (r.next())
+                                        {%>
+                                            <tr>
+                                                <td><%= r.getString(4) %></td>
+                                                <td><%= r.getString(5) %></td>
+                                                 <td><%= r.getString(3) %></td>
+                                                <td><%= r.getString(1) %></td>
+                                            </tr>
+
+                                        <%}
+                                    %>
+                                </tbody>
+                            </table>
+                            <%}
+                        %>     
+                    
+                    
             </center>
+                    
+                    
         </div>
     </body>
 </html>

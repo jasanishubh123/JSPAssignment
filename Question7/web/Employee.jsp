@@ -29,6 +29,7 @@
                     <thead>
                         <th>Name</th>
                         <th>Store</th>
+                        <th>See Sales</th>
                     </thead>
                     <tbody>
                         <%
@@ -37,12 +38,41 @@
                                 <tr>
                                     <td><%= rs.getString(2) %></td>
                                     <td><%= rs.getString(3) %></td>
+                                    <td><a href="Employee.jsp?id=<%= rs.getString(1) %>">See Sales</a></td>
                                 </tr>
                             
                             <%}
                         %>
                     </tbody>
                 </table>
+                    <br>
+                    <br>
+                    <br>
+                    <% String id=request.getParameter("id");
+                        if(id!=null){
+                            ResultSet rd = empobj.getEmployeeSalesData(id);
+                    %>
+                        <table border="1">
+                    <thead>
+                        <th>Customer</th><th>Item</th><th>Qty</th><th>Date</th>
+                    </thead>
+                    <tbody>
+                        <%
+                            while (rd.next())
+                            {%>
+                                <tr>
+                                    <td><%= rd.getString(5) %></td>
+                                    <td><%= rd.getString(4) %></td>
+                                    <td><%= rd.getString(2) %></td>
+                                    <td><%= rd.getString(3) %></td>
+                                </tr>
+                            
+                            <%}
+                        %>
+                    </tbody>
+                </table>
+                        <%}
+                    %>
             </center>
         </div>
     </body>
